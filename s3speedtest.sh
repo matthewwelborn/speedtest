@@ -41,10 +41,9 @@ case $arg in
 	buildlog
 	if [ -w "$logfile" ]
 	then
-	  echo "$log" >> $logfile
+	  echo $log >> $logfile
 	else
-	  echo "Unable to write to log file! Sending to stdout."
-	  echo "$log"
+	  echo "Unable to write to log file!"
 	  exit 1
 	fi
 	exit
