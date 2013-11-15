@@ -39,7 +39,14 @@ case $arg in
     ;;
   *)
 	buildlog
-	echo $log >> $logfile
+	if [ -w "$logfile" ]
+	then
+	  echo "$log" >> $logfile
+	else
+	  echo "Unable to write to log file! Sending to stdout."
+	  echo "$log"
+	  exit 1
+	fi
 	exit
 	;;
 esac
