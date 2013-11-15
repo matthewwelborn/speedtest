@@ -38,16 +38,10 @@ case $arg in
 	exit
     ;;
   *)
-	buildlog
-	if [ -w "$logfile" ]
-	then
-	  echo $log >> $logfile
-	else
-	  echo "Unable to write to log file!"
-	  exit 1
-	fi
-	exit
-	;;
+    buildlog
+    echo $log >> $logfile
+    exit
+    ;;
 esac
 done
 
