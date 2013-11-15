@@ -38,10 +38,10 @@ case $arg in
 	exit
     ;;
   *)
-    buildlog
-    echo $log >> $logfile
-    exit
-    ;;
+	buildlog
+	echo $log >> $logfile
+	exit
+	;;
 esac
 done
 
