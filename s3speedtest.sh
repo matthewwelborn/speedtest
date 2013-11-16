@@ -1,10 +1,12 @@
-logfile="tests3.log"
+logfile="test.log"
+
 
 getfile="https://s3.amazonaws.com/smock_staging/0d4c4027-8e78-4ec0-bced-8d0f63140d12.jpeg.jpg" #100KB
 #getfile="https://s3.amazonaws.com/smock_staging/0682cbe6-2fa4-45a8-be48-77bbb4fcecdb.jpeg"    #500KB
 #getfile="https://s3.amazonaws.com/smock_staging/10159/bc_back.pdf"                            #1MB
 #getfile="https://s3.amazonaws.com/smock_staging/10611/bc_front.pdf"                           #1.9MB
 #getfile="https://s3.amazonaws.com/smock_staging/0ef36f9a-4584-4ea5-a5c1-b994bdb203fc.tiff"    #9.2MB
+
 
 usage()
 {
@@ -15,7 +17,9 @@ usage: $0 options
 EOF
 }
 
+
 logformat="\n  Size:        %{size_download} Bytes\n  Response:    %{http_code}\n  Latency:     %{time_starttransfer} seconds\n  Speed:       %{speed_download} Bytes/sec\n  DNS Time:    %{time_namelookup} seconds\n  Pretransfer: %{time_pretransfer} seconds\n  Total Time:  %{time_total}\n\n"
+
 
 buildlog()
 {
@@ -24,20 +28,36 @@ buildlog()
     log="[${logdate}] ${curldata}"
 }
 
-while getopts "ht" arg; do
+
+writelog()
+{
+	buildlog
+	if [ ! -e "$logfile" ]
+	then
+		touch $logfile
+	fi
+	if [ -w "$logfile" ]
+	then
+		echo "$log" >> $logfile
+	else
+		echo "Can't write log file"
+	fi
+}
+
+while getopts "htl" arg; do
 case $arg in
-h)
+  h)
     usage 
     exit 1
     ;;
-t)
+  t)
     buildlog
     echo "$log"
-    ;;
-?)
-    echo "$log" >> $logfile  
-    exit
-    ;;
+	exit
+	;;
 esac
 done
+
+writelog
+exit
 
