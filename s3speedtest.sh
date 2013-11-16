@@ -1,6 +1,4 @@
-#!/bin/bash
-
-logfile="/var/log/s3.log"
+logfile="tests3.log"
 
 getfile="https://s3.amazonaws.com/smock_staging/0d4c4027-8e78-4ec0-bced-8d0f63140d12.jpeg.jpg" #100KB
 #getfile="https://s3.amazonaws.com/smock_staging/0682cbe6-2fa4-45a8-be48-77bbb4fcecdb.jpeg"    #500KB
@@ -21,27 +19,25 @@ logformat="\n  Size:        %{size_download} Bytes\n  Response:    %{http_code}\
 
 buildlog()
 {
-logdate=`date`
-curldata="`curl -sSw "$logformat" $getfile -o /dev/null`"
-log="[${logdate}] ${curldata}"
+    logdate=`date`
+    curldata="`curl -sSw "$logformat" $getfile -o /dev/null`"
+    log="[${logdate}] ${curldata}"
 }
 
 while getopts "ht" arg; do
 case $arg in
-  h)
+h)
     usage 
     exit 1
-	;;
-  t)
-    buildlog
-    echo "$log" 
-	exit
     ;;
-  *)
-	buildlog
-	echo $log >> $logfile
-	exit
-	;;
+t)
+    buildlog
+    echo "$log"
+    ;;
+?)
+    echo "$log" >> $logfile  
+    exit
+    ;;
 esac
 done
 
