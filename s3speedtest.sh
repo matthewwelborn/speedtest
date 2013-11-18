@@ -1,4 +1,4 @@
-logfile="test.log"
+logfile="/var/log/s3.log"
 
 
 getfile="https://s3.amazonaws.com/smock_staging/0d4c4027-8e78-4ec0-bced-8d0f63140d12.jpeg.jpg" #100KB
