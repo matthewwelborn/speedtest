@@ -1,6 +1,6 @@
 s3speedtest.sh will need to be called in a cron and log to a directory logged by the user. Currently it logs the response times for a 100KB file to /var/log/s3.log. Those can be changed in the script. If the log file is changed here though, it will also need to be updated in savegraph.sh.
 
-* * * * * cd /path/to/script && ./speedtest.sh
+* * * * * cd /path/to/script && ./s3speedtest.sh
 
 Once that is in place, buildall.sh will need to be called in a cron every minute as well. The user will need write access to the web directory where the images will be stored. There are instructions in the buildall.sh script to configure.
 
