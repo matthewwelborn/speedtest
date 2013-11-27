@@ -1,6 +1,7 @@
 #!/bin/bash
 
 output_path="/var/www/aws/"
+log_file="/var/log/s3.log"
 
 usage()
 {
@@ -61,7 +62,7 @@ do
 	esac
 done
 
-grep $search /var/log/s3.log | tail -$minutes | sed s/[^0-9\.]//g > ${output_path}/${name}.txt
+grep $search $log_file | tail -$minutes | sed s/[^0-9\.]//g > ${output_path}/${name}.txt
 /usr/bin/gnuplot <<_EOF
 set term png
 set output "${output_path}/${name}.png"
