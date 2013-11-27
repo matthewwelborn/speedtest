@@ -1,3 +1,9 @@
-Use the buildall.sh script to configure which images you want to build and where you want to save them. 
+s3speedtest.sh will need to be called in a cron and log to a directory logged by the user.
 
-You can call buildall.sh from the cronjob to build all the images.
+* * * * * cd /path/to/script && ./speedtest.sh
+
+Once that is in place, buildall.sh will need to be called in a cron every minute as well. The user will need write access
+to the web directory where the images will be stored. There are instructions in the buildall.sh script to configure.
+
+* * * * *    cd /path/to/script && ./buildall.sh
+
