@@ -1,4 +1,4 @@
-s3speedtest.sh will need to be called in a cron and log to a directory logged by the user. Currently it logs the response times for a 100KB file to /var/log/s3.log. Those can be changed in the script. If the log file is changed here though, it will also need to be updated in savegraph.sh.
+s3speedtest.sh will need to be called in a cron and log to a directory writable by the user. Currently it logs the response times for a 100KB file to /var/log/s3.log. Those can be changed in the script. If the log file is changed here though, it will also need to be updated in savegraph.sh.
 
 * * * * * cd /path/to/script && ./s3speedtest.sh
 
